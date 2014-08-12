@@ -1,9 +1,15 @@
 {
-  "require": {
-    "silex/silex": "~1.1",
-    "twig/twig": "~1.8"
-  },
-  "autoload": {
-    "psr-4": {"Application\\": "Application/"}
-  }
+    "require": {
+        "silex/silex": "~1.1",
+        "twig/twig": "~1.8",
+        "knplabs/knp-menu": "~2.0",
+        "symfony/form": "~2.3",
+        "symfony/twig-bridge": "~2.3",
+        "symfony/security-csrf": "~2.4",
+        "symfony/translation": "~2.3",
+        "swiftmailer/swiftmailer": "~4.1"
+    },
+    "autoload": {
+        "psr-4": {"Application\\": "Application/"}
+    }
 }
