@@ -9,12 +9,14 @@ module.exports = function (grunt) {
             scripts: {
                 files: {
                     'js/jquery.min.js': 'bower_components/jquery/dist/jquery.min.js',
-                    'js/bootstrap.min.js': 'bower_components/bootstrap/dist/js/bootstrap.min.js'
+                    'js/bootstrap.min.js': 'bower_components/bootstrap/dist/js/bootstrap.min.js',
+                    'js/app.js': 'local_assets/js/app.js'
                 }
             },
             stylesheets: {
                 files: {
-                    'css/bootstrap.min.css': 'bower_components/bootstrap/dist/css/bootstrap.min.css'
+                    'css/bootstrap.min.css': 'bower_components/bootstrap/dist/css/bootstrap.min.css',
+                    'css/app.css': 'local_assets/css/app.css'
                 }
             },
             fonts: {
