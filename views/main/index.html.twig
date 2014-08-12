@@ -4,9 +4,42 @@
     Home - {{ parent() }}
 {% endblock %}
 
-{% block body %}
-    <h1>Hello!</h1>
+{% block js %}
+    {{ parent() }}
+    <script src="assets/js/app.js" type="text/javascript"></script>
+{% endblock %}
 
-    <p>My name is jrdn hannah, and this application is under development.<br />
-    Check back soon!</p>
+{% block body %}
+    <div class="jumbotron phpstorm-header">
+        <div class="row">
+            <div class="col-md-2 banner left-text">
+                my name is jrdn hannah
+            </div>
+            <div class="col-md-8">
+                <img src="assets/images/phpstorm-header.png" alt="PHPStorm" width="650" height="212"/>
+            </div>
+            <div class="col-md-2 banner right-text">
+                and i develop web applications
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Who am I?</h1>
+            <p>
+                My name is jrdn hannah, and I am a 22 year old web developer currently based in Swansea, South Wales.<br />
+            </p>
+            <h2>What do I do?</h2>
+            <p>
+                I primarily develop in Symfony2, but enjoy branching out and working with as many tools as I can get my
+                hands on. For example, this website is built in the <a href="//silex.sensiolabs.org" target="_blank">Silex</a>
+                micro-framework.
+            </p>
+            <h2>So...?</h2>
+            <p>
+                What this means if you need a web application, or any kind of website, I can create an effective and powerful application for you using the best tools currently available.
+            </p>
+        </div>
+    </div>
 {% endblock %}
