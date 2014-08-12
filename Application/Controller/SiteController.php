@@ -12,6 +12,9 @@ class SiteController
         $this->twig = $twig;
     }
 
+    /**
+     * @return string
+     */
     public function indexAction()
     {
         return $this->twig->render('main/index.html.twig');
