@@ -1,0 +1,4 @@
+web/assets
+vendor/
+bower_components/
+node_modules/
