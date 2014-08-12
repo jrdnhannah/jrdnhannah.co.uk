@@ -2,8 +2,11 @@
 
 namespace jrdn;
 
-require_once __DIR__.'/../vendor/autoload.php';
+require_once __DIR__ . '/../vendor/autoload.php';
 
-$app = new \Application\App;
-$app->debug(true);
-$app->boot();
+$app = new \Silex\Application;
+
+require_once __DIR__ . '/../app/bootstrap.php';
+
+$app['debug'] = true;
+$app->run();
