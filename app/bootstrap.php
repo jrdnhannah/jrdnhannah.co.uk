@@ -29,6 +29,18 @@ foreach ($providers as $provider) {
 }
 
 /**
+ * Load annotations register
+ */
+require_once __DIR__ . '/config/annotations.php';
+
+/**
  * Load application parameters
  */
-require_once 'config/parameters.php';
+require_once __DIR__ . '/config/parameters.php';
+
+/**
+ * Load doctrine config
+ */
+require_once __DIR__ . '/config/doctrine.php';
+
+return $app;
