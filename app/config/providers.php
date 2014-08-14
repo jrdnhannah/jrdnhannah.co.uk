@@ -6,7 +6,8 @@ $providers = [
     [new \Silex\Provider\ServiceControllerServiceProvider],
     [new \Silex\Provider\UrlGeneratorServiceProvider],
     [new \Silex\Provider\FormServiceProvider],
-    [new \Silex\Provider\SwiftmailerServiceProvider]
+    [new \Silex\Provider\SwiftmailerServiceProvider],
+    [new \Silex\Provider\DoctrineServiceProvider]
 ];
 
 return $providers;
