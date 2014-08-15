@@ -28,16 +28,17 @@ class NewsController
      */
     public function showArticleListAction()
     {
+        /** @var Article[] $articleList */
         $articleList = $this->em->getRepository('Application\Entity\Article')->findAll();
 
-        return $this->twig->render('news/article_list.html.twig', ['article' => $articleList]);
+        return $this->twig->render('news/article_list.html.twig', ['article_list' => $articleList]);
     }
 
     /**
      * @param Article $article
      * @return string
      */
-    public function showNewsArticleAction(Article $article)
+    public function showArticleAction(Article $article)
     {
         return $this->twig->render('news/article.html.twig', ['article' => $article]);
     }
