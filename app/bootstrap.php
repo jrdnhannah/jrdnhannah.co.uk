@@ -8,17 +8,17 @@ $app['debug'] = true;
 /**
  * Load controllers
  */
-require_once 'config/controllers.php';
+require_once __DIR__ . '/config/controllers.php';
 
 /**
  * Load routes
  */
-require_once 'config/routes.php';
+require_once __DIR__ . '/config/routes.php';
 
 /**
  * Load service providers
  */
-require_once 'config/providers.php';
+require_once __DIR__ . '/config/providers.php';
 
 foreach ($providers as $provider) {
     if (count($provider) > 1) {
