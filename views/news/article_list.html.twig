@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}News - {{ parent() }}{% endblock %}
+
+{% block body %}
+    {% for article in article_list %}
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <h2>
+                    <a href="{{ path('route.news_article', {'article': article.id}) }}">{{ article.title }}</a>
+                    <small>
+                        {{ article.createdAt|date('g:sa \\o\\n l \\t\\h\\e jS \\o\\f F, Y') }}
+                    </small>
+                </h2>
+                <p>{{ article.content }}</p>
+            </div>
+        </div>
+    {% else %}
+        <div class="row">
+            <div class="col-lg-8 col-md-10 col-lg-offset-2 col-md-offset-1">
+                <div class="thumbnail">
+                    <h2>Oops!</h2>
+
+                    <p>Sorry, there doesn't seem to be any articles here!</p>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ article.title }} - News - {{ parent() }}{% endblock %}
+
+{% block body %}
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <h2>
+                {{ article.title }}
+                <small>
+                    {{ article.createdAt|date('g:sa \\o\\n l \\t\\h\\e jS \\o\\f F, Y') }}
+                </small>
+            </h2>
+            <p>
+                {{ article.content }}
+            </p>
+            <footer>
+                <small>
+                    Last updated at {{ article.lastUpdated|date('g:sa \\o\\n l \\t\\h\\e jS \\o\\f F, Y') }}
+                </small>
+            </footer>
+        </div>
+    </div>
+{% endblock %}
