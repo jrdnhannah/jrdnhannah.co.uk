@@ -1,0 +1,43 @@
+<?php
+
+/**
+ *
+ *  Set parameters for the mailer
+ *
+ */
+
+$app['swiftmailer.options'] = [
+    'host' => '',
+    'port' => '',
+    'username' => '',
+    'password' => ''
+];
+
+$app['mail.to'] = ['' => ''];
+$app['mail.from'] = ['' => ''];
+
+/**
+ *
+ *  Set parameters for Doctrine
+ *
+ */
+
+$app['db.options'] = [
+    'driver' => '',
+    'dbname' => '',
+    'user' => '',
+    'password' => '',
+    'charset' => ''
+];
+
+$app['orm.proxies_dir'] = __DIR__ . '/../doctrine/proxies/';
+$app['orm.em.options'] = [
+    'mappings' => [
+        [
+            'type' => 'annotation',
+            'namespace' => 'Application\Entity',
+            'path' => __DIR__ . '/../../src/Application/Entity',
+            'use_simple_annotation_reader' => false
+        ]
+    ]
+];
