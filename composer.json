@@ -11,7 +11,8 @@
         "swiftmailer/swiftmailer": "~4.1",
         "doctrine/dbal": "~2.3",
         "doctrine/orm": "~2.3",
-        "dflydev/doctrine-orm-service-provider": "~2.0"
+        "dflydev/doctrine-orm-service-provider": "~2.0",
+        "knplabs/console-service-provider": "dev-master"
     },
     "autoload": {
         "psr-4": {"Application\\": "src/Application/"}

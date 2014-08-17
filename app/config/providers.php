@@ -11,7 +11,8 @@ $providers = [
     [new \Silex\Provider\FormServiceProvider],
     [new \Silex\Provider\SwiftmailerServiceProvider],
     [new \Silex\Provider\DoctrineServiceProvider],
-    [new \Dflydev\Provider\DoctrineOrm\DoctrineOrmServiceProvider]
+    [new \Dflydev\Provider\DoctrineOrm\DoctrineOrmServiceProvider],
+    [new \Knp\Provider\ConsoleServiceProvider]
 ];
 
 return $providers;
