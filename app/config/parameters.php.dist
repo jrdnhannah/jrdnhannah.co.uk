@@ -41,3 +41,7 @@ $app['orm.em.options'] = [
         ]
     ]
 ];
+
+$app['console.name'] = 'SiteConsole';
+$app['console.version'] = '1.0.0';
+$app['console.project_directory'] = __DIR__ . '/../../';
