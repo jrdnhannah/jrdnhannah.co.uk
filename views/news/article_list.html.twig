@@ -1,13 +1,28 @@
 {% extends 'base.html.twig' %}
 
+{% import 'news/article.html.twig' as macros %}
+
 {% block title %}News - {{ parent() }}{% endblock %}
 
 {% block body %}
+    {% if is_granted('ROLE_ADMIN') %}
+        <div class="row">
+            <div class="col-md-12">
+                <a href="{{ path('route.admin.news_article') }}" class="btn btn-primary btn-block">
+                    <i class="glyphicon glyphicon-plus"></i>
+                    New Article
+                </a>
+            </div>
+        </div>
+    {% endif %}
+
     {% for article in article_list %}
         <div class="panel panel-default">
             <div class="panel-body">
                 <h2>
                     <a href="{{ path('route.news_article', {'article': article.id}) }}">{{ article.title }}</a>
+                    {{ macros.displayAdminOptions(article) }}
+                    <br />
                     <small>
                         {{ article.createdAt|date('g:sa \\o\\n l \\t\\h\\e jS \\o\\f F, Y') }}
                     </small>

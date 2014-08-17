@@ -1,15 +1,31 @@
 {% extends 'base.html.twig' %}
 
+{% macro displayAdminOptions(article) %}
+    {% if is_granted('ROLE_ADMIN') %}
+        <a href="{{ path('route.admin.edit_news_article', {'article': article.id}) }}" class="btn btn-primary">
+            <i class="glyphicon glyphicon-edit"></i>
+            Edit
+        </a>
+        <a href="{{ path('route.admin.delete_news_article', {'article': article.id}) }}" class="btn btn-danger">
+            <i class="glyphicon glyphicon-remove"></i>
+            Delete
+        </a>
+    {% endif %}
+{% endmacro %}
+
+{% import _self as macros %}
+
 {% block title %}{{ article.title }} - News - {{ parent() }}{% endblock %}
 
 {% block body %}
     <div class="panel panel-default">
         <div class="panel-body">
             <h2>
-                {{ article.title }}
+                {{ article.title }}<br />
                 <small>
                     {{ article.createdAt|date('g:sa \\o\\n l \\t\\h\\e jS \\o\\f F, Y') }}
                 </small>
+                {{ macros.displayAdminOptions(article) }}
             </h2>
             <p>
                 {{ article.content }}
