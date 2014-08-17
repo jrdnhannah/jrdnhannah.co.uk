@@ -5,6 +5,9 @@
 {% block title %}News - {{ parent() }}{% endblock %}
 
 {% block body %}
+
+    {{ macros.displayNotices() }}
+
     {% if is_granted('ROLE_ADMIN') %}
         <div class="row">
             <div class="col-md-12">

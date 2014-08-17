@@ -13,11 +13,25 @@
     {% endif %}
 {% endmacro %}
 
+{% macro displayNotices() %}
+    {% set notices = app['session'].flashbag.get('notice') %}
+    {% if notices|length > 0 %}
+        <div class="alert alert-success" role="alert">
+            {% for notice in notices %}
+                <p>{{ notice }}</p>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endmacro %}
+
 {% import _self as macros %}
 
 {% block title %}{{ article.title }} - News - {{ parent() }}{% endblock %}
 
 {% block body %}
+
+    {{ macros.displayNotices() }}
+
     <div class="panel panel-default">
         <div class="panel-body">
             <h2>
