@@ -54,4 +54,6 @@ require_once __DIR__ . '/config/annotations.php';
  */
 require_once __DIR__ . '/config/doctrine.php';
 
+require_once __DIR__ . '/config/events.php';
+
 return $app;
