@@ -75,9 +75,8 @@ class NewsController
     public function createArticleAction(Request $request)
     {
         $handler = function(Request $request, FormInterface $form) {
-            /** @var Session $session */
-            $session = $request->getSession();
-            $session->getFlashBag()->add('notice', 'Article successfully created.');
+            $request->getSession()->getFlashBag()->add('notice', 'Article successfully created.');
+
             $this->em->persist($form->getData());
             $this->em->flush();
 
@@ -104,12 +103,10 @@ class NewsController
     public function editArticleAction(Request $request, Article $article)
     {
         $handler = function(Request $request, FormInterface $form) {
-            /** @var Session $session */
-            $session = $request->getSession();
-            $session->getFlashBag()->add('notice', 'Article successfully updated.');
+            $request->getSession()->getFlashBag()->add('notice', 'Article successfully updated.');
 
+            // mark entity as updated
             $form->getData()->markUpdated();
-
             $this->em->flush();
 
             return new RedirectResponse(
@@ -143,9 +140,7 @@ class NewsController
      */
     public function deleteArticleAction(Request $request, Article $article)
     {
-        /** @var Session $session */
-        $session = $request->getSession();
-        $session->getFlashBag()->add('notice', 'Article successfully deleted.');
+        $request->getSession()->getFlashBag()->add('notice', 'Article successfully deleted.');
 
         $this->em->remove($article);
         $this->em->flush();
