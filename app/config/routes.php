@@ -18,7 +18,7 @@ $app->get('/news',              'news.controller:showArticleListAction')
 
 $app->get('/news/{article}',    'news.controller:showArticleAction')
     ->bind('route.news_article')
-    ->convert('article', function($article) use ($entityParamConverter) {
+    ->convert('article', function ($article) use ($entityParamConverter) {
             return $entityParamConverter('Application\Entity\Article', $article);
         }
     );
