@@ -17,7 +17,16 @@ $app['contact.controller'] = function () use ($app) {
 $app['news.controller'] = function() use ($app) {
     return new \Application\Controller\NewsController(
         $app['twig'],
-        $app['orm.em']
+        $app['orm.em'],
+        $app['form.factory']
+    );
+};
+
+$app['auth.controller'] = function() use ($app) {
+    return new \Application\Controller\AuthenticationController(
+        $app['twig'],
+        $app['security.last_error'],
+        $app['session']
     );
 };
 
