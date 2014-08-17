@@ -18,7 +18,8 @@ $app['news.controller'] = function() use ($app) {
     return new \Application\Controller\NewsController(
         $app['twig'],
         $app['orm.em'],
-        $app['form.factory']
+        $app['form.factory'],
+        $app['url_generator']
     );
 };
 
