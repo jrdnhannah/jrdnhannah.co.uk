@@ -20,5 +20,8 @@
         "symfony/security-core": "~2.3"
     },
     "minimum-stability": "dev",
-    "prefer-stable": true
+    "prefer-stable": true,
+    "config": {
+        "bin-dir": "bin"
+    }
 }
