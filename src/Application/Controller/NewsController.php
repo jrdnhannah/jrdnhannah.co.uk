@@ -62,7 +62,10 @@ class NewsController
      */
     public function createArticleAction(Request $request)
     {
-        $handler = function(FormInterface $form) {
+        $handler = function(Request $request, FormInterface $form) {
+            /** @var Session $session */
+            $session = $request->getSession();
+            $session->getFlashBag()->add('notice', 'Article successfully created.');
             $this->em->persist($form->getData());
             $this->em->flush();
         };
@@ -85,7 +88,10 @@ class NewsController
      */
     public function editArticleAction(Request $request, Article $article)
     {
-        $handler = function() {
+        $handler = function(Request $request) {
+            /** @var Session $session */
+            $session = $request->getSession();
+            $session->getFlashBag()->add('notice', 'Article successfully updated.');
             $this->em->flush();
         };
 
@@ -101,11 +107,16 @@ class NewsController
     }
 
     /**
+     * @param  Request $request
      * @param  Article $article
      * @return string
      */
-    public function deleteArticleAction(Article $article)
+    public function deleteArticleAction(Request $request, Article $article)
     {
+        /** @var Session $session */
+        $session = $request->getSession();
+        $session->getFlashBag()->add('notice', 'Article successfully deleted.');
+
         $this->em->remove($article);
         $this->em->flush();
 
@@ -125,7 +136,7 @@ class NewsController
         $form->handleRequest($request);
 
         if (true === $form->isValid()) {
-            $handler($form);
+            $handler($request, $form);
             return $form;
         }
 

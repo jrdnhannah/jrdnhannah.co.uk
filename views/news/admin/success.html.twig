@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Create - News - {{ parent() }}{% endblock %}
+
+{% block body %}
+    <h1>Success</h1>
+
+    {% for notice in app['session'].flashbag.get('notice') %}
+        <p>
+            {{ notice }}
+        </p>
+    {% endfor %}
+{% endblock %}
