@@ -11,7 +11,9 @@ use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class NewsController
 {
@@ -24,16 +26,26 @@ class NewsController
     /** @var \Symfony\Component\Form\FormFactoryInterface */
     private $form;
 
+    /** @var \Symfony\Component\Routing\Generator\UrlGeneratorInterface */
+    private $urlGenerator;
+
     /**
      * @param \Twig_Environment $twig
      * @param EntityManagerInterface $em
      * @param FormFactoryInterface $form
+     * @param UrlGeneratorInterface $urlGenerator
      */
-    public function __construct(\Twig_Environment $twig, EntityManagerInterface $em, FormFactoryInterface $form)
+    public function __construct(
+        \Twig_Environment $twig,
+        EntityManagerInterface $em,
+        FormFactoryInterface $form,
+        UrlGeneratorInterface $urlGenerator
+    )
     {
         $this->twig = $twig;
         $this->em   = $em;
         $this->form = $form;
+        $this->urlGenerator = $urlGenerator;
     }
 
     /**
@@ -68,11 +80,14 @@ class NewsController
             $session->getFlashBag()->add('notice', 'Article successfully created.');
             $this->em->persist($form->getData());
             $this->em->flush();
+
+            return new RedirectResponse(
+                $this->urlGenerator->generate('route.news_article', ['article' => $form->getData()->getId()])
+            );
         };
 
         try {
-            $this->handleForm($request, $handler);
-            return $this->twig->render('news/admin/success.html.twig');
+            return $this->handleForm($request, $handler);
         } catch (InvalidFormException $e) {
             return $this->twig->render(
                 'news/admin/create.html.twig',
@@ -88,16 +103,22 @@ class NewsController
      */
     public function editArticleAction(Request $request, Article $article)
     {
-        $handler = function(Request $request) {
+        $handler = function(Request $request, FormInterface $form) {
             /** @var Session $session */
             $session = $request->getSession();
             $session->getFlashBag()->add('notice', 'Article successfully updated.');
+
+            $form->getData()->markUpdated();
+
             $this->em->flush();
+
+            return new RedirectResponse(
+                $this->urlGenerator->generate('route.news_article', ['article' => $form->getData()->getId()])
+            );
         };
 
         try {
-            $this->handleForm($request, $handler, $article, 'PUT');
-            return $this->twig->render('news/admin/success.html.twig');
+            return $this->handleForm($request, $handler, $article);
         } catch (InvalidFormException $e) {
             return $this->twig->render(
                 'news/admin/create.html.twig',
@@ -129,24 +150,30 @@ class NewsController
         $this->em->remove($article);
         $this->em->flush();
 
-        return $this->twig->render('news/admin/success.html.twig');
+        return new RedirectResponse(
+            $this->urlGenerator->generate('route.news')
+        );
     }
 
     /**
-     * @param Request  $request
+     * @param Request $request
      * @param \Closure $handler
-     * @param Article  $article
-     * @return \Symfony\Component\Form\Form
+     * @param Article $article
+     * @param Response $response
      * @throws \Application\Exception\InvalidFormException
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    private function handleForm(Request $request, \Closure $handler, Article $article = null)
+    private function handleForm(Request $request, \Closure $handler, Article $article = null, Response $response = null)
     {
         $form = $this->createArticleForm($article);
         $form->handleRequest($request);
 
         if (true === $form->isValid()) {
-            $handler($request, $form);
-            return $form;
+            if (($handlerResponse = $handler($request, $form)) instanceof Response) {
+                return $handlerResponse;
+            }
+
+            return $response instanceof Response ?: new Response();
         }
 
         throw new InvalidFormException($form);
