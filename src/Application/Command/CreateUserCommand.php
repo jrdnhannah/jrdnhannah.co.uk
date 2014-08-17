@@ -34,7 +34,7 @@ class CreateUserCommand extends Command
         $user->setUsername($username);
         $user->setPassword($password);
 
-        if ($input->getOption('super-admin')) {
+        if ($input->getOption('admin')) {
             $user->setRoles(['ROLE_ADMIN']);
         }
 
