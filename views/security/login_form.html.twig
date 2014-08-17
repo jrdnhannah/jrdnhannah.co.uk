@@ -3,10 +3,14 @@
 {% block title %}Log In - {{ parent() }}{% endblock %}
 
 {% block body %}
-<form action="{{ path('login_check') }}" method="post">
-    {{ error }}{% if error is not empty %}<br />{% endif %}
-    <input type="text" name="_username" value="{{ last_username }}" placeholder="Username" /><br />
-    <input type="password" name="_password" placeholder="Password" /><br />
-    <button type="submit">Log In</button>
-</form>
+    <div class="row">
+        <div class="box col-md-12">
+            <form action="{{ path('login_check') }}" method="post">
+                {{ error }}{% if error is not empty %}<br/>{% endif %}
+                <input type="text" name="_username" value="{{ last_username }}" placeholder="Username"/><br/>
+                <input type="password" name="_password" placeholder="Password"/><br/>
+                <button type="submit">Log In</button>
+            </form>
+        </div>
+    </div>
 {% endblock %}

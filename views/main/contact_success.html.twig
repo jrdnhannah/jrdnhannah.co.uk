@@ -3,7 +3,11 @@
 {% block title %}Success - {{ parent() }}{% endblock %}
 
 {% block body %}
-    <h1>Yay!</h1>
+    <div class="row">
+        <div class="box col-md-12">
+            <h1>Yay!</h1>
 
-    <p>Thanks, {{ name }}. Your message has been sent and I shall review it shortly.</p>
+            <p>Thanks, {{ name }}. Your message has been sent and I shall review it shortly.</p>
+        </div>
+    </div>
 {% endblock %}

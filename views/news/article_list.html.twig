@@ -20,8 +20,8 @@
     {% endif %}
 
     {% for article in article_list %}
-        <div class="panel panel-default">
-            <div class="panel-body">
+        <div class="row">
+            <div class="box col-md-12">
                 <h2>
                     <a href="{{ path('route.news_article', {'article': article.id}) }}">{{ article.title }}</a>
                     {{ macros.displayAdminOptions(article) }}
@@ -35,7 +35,7 @@
         </div>
     {% else %}
         <div class="row">
-            <div class="col-lg-8 col-md-10 col-lg-offset-2 col-md-offset-1">
+            <div class="box col-lg-8 col-md-10 col-lg-offset-2 col-md-offset-1">
                 <div class="thumbnail">
                     <h2>Oops!</h2>
 

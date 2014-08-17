@@ -3,19 +3,25 @@
 {% block title %}Delete "{{ article.title }}" - Admin - {{ parent() }}{% endblock %}
 
 {% block body %}
-    <h2>Delete article?</h2>
+    <div class="row">
+        <div class="box col-md-12">
+            <h2>Delete article?</h2>
 
-    <p>Are you sure you want to delete article "{{ article.title }}"?</p>
+            <p>Are you sure you want to delete article "{{ article.title }}"?</p>
 
-    <p>
-        <a href="{{ path('route.admin.delete_news_article', {'article': article.id}) }}" class="btn btn-danger btn-lg">
-            <i class="glyphicon glyphicon-remove"></i>
-            Yes
-        </a>
-        &nbsp;
-        <a href="{{ path('route.news_article', {'article': article.id}) }}" class="btn btn-default btn-lg">
-            <i class="glyphicon glyphicon-ban-circle"></i>
-            No
-        </a>
-    </p>
+            <p>
+                <a href="{{ path('route.admin.delete_news_article', {'article': article.id}) }}"
+                   class="btn btn-danger btn-lg">
+                    <i class="glyphicon glyphicon-remove"></i>
+                    Yes
+                </a>
+                &nbsp;
+                <a href="{{ path('route.news_article', {'article': article.id}) }}" class="btn btn-default btn-lg">
+                    <i class="glyphicon glyphicon-ban-circle"></i>
+                    No
+                </a>
+            </p>
+        </div>
+    </div>
+
 {% endblock %}
