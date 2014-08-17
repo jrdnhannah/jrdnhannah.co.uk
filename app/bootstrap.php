@@ -6,6 +6,17 @@ $app          = new \Silex\Application;
 $app['debug'] = true;
 
 /**
+ * Load application parameters
+ */
+require_once __DIR__ . '/config/parameters.php';
+
+/**
+ * Load application services
+ */
+
+require_once __DIR__ . '/config/services.php';
+
+/**
  * Load controllers
  */
 require_once __DIR__ . '/config/controllers.php';
@@ -29,14 +40,14 @@ foreach ($providers as $provider) {
 }
 
 /**
+ * Load security
+ */
+require_once __DIR__ . '/config/security.php';
+
+/**
  * Load annotations register
  */
 require_once __DIR__ . '/config/annotations.php';
-
-/**
- * Load application parameters
- */
-require_once __DIR__ . '/config/parameters.php';
 
 /**
  * Load doctrine config
