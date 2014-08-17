@@ -6,6 +6,8 @@
         "symfony/twig-bridge": "~2.3",
         "symfony/security-csrf": "~2.4",
         "symfony/translation": "~2.3",
+        "symfony/security": "~2.3",
+        "symfony/validator": "~2.3",
         "swiftmailer/swiftmailer": "~4.1",
         "doctrine/dbal": "~2.3",
         "doctrine/orm": "~2.3",
@@ -13,6 +15,9 @@
     },
     "autoload": {
         "psr-4": {"Application\\": "src/Application/"}
+    },
+    "replace": {
+        "symfony/security-core": "~2.3"
     },
     "minimum-stability": "dev",
     "prefer-stable": true
