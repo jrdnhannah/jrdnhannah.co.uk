@@ -1,10 +1,4 @@
 {
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/jrdnhannah/nutwerk-orm-extension"
-        }
-    ],
     "require": {
         "silex/silex": "dev-master",
         "twig/twig": "~1.8",
