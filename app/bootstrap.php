@@ -5,10 +5,7 @@ require_once __DIR__ . '/../vendor/autoload.php';
 $app          = new \Silex\Application;
 $app['debug'] = true;
 
-/**
- * Load application parameters
- */
-require_once __DIR__ . '/config/parameters.php';
+
 
 /**
  * Load application services
@@ -38,6 +35,11 @@ foreach ($providers as $provider) {
         $app->register($provider[0]);
     }
 }
+
+/**
+ * Load application parameters
+ */
+require_once __DIR__ . '/config/parameters.php';
 
 /**
  * Load security
