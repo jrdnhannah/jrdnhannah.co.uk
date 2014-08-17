@@ -1,4 +1,10 @@
 {
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/jrdnhannah/ConsoleServiceProvider"
+        }
+    ],
     "require": {
         "silex/silex": "dev-master",
         "twig/twig": "~1.8",
