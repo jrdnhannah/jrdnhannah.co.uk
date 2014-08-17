@@ -107,6 +107,15 @@ class NewsController
     }
 
     /**
+     * @param Article $article
+     * @return string
+     */
+    public function confirmDeleteArticleAction(Article $article)
+    {
+        return $this->twig->render('news/admin/confirm_delete.html.twig', ['article' => $article]);
+    }
+
+    /**
      * @param  Request $request
      * @param  Article $article
      * @return string
