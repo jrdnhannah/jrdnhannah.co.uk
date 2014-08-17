@@ -16,6 +16,7 @@ module.exports = function (grunt) {
             stylesheets: {
                 files: {
                     'css/bootstrap.min.css': 'bower_components/bootstrap/dist/css/bootstrap.min.css',
+                    'css/theme.css': 'local_assets/business-casual/css/business-casual.css',
                     'css/app.css': 'local_assets/css/app.css'
                 }
             },
@@ -29,7 +30,8 @@ module.exports = function (grunt) {
             },
             images: {
                 files: {
-                    'images/': 'local_assets/images/*'
+                    'img/': 'local_assets/img/*',
+                    'img/bg.jpg': 'local_assets/business-casual/img/bg.jpg'
                 }
             }
         }
