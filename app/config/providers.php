@@ -5,6 +5,8 @@ $providers = [
     [new \Silex\Provider\LocaleServiceProvider],
     [new \Silex\Provider\TranslationServiceProvider, ['locale_fallback' => 'en']],
     [new \Silex\Provider\ServiceControllerServiceProvider],
+    [new \Silex\Provider\SessionServiceProvider],
+    [new \Silex\Provider\SecurityServiceProvider],
     [new \Silex\Provider\RoutingServiceProvider],
     [new \Silex\Provider\FormServiceProvider],
     [new \Silex\Provider\SwiftmailerServiceProvider],
