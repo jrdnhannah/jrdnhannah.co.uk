@@ -19,11 +19,11 @@
         </div>
     {% endif %}
 
-    {% for article in article_list %}
+    {% for article in list %}
         <div class="row">
             <div class="box col-md-12">
                 <h2>
-                    <a href="{{ path('route.news_article', {'article': article.id}) }}">{{ article.title }}</a>
+                    <a href="{{ path('route.news_article', {'entity': article.id}) }}">{{ article.title }}</a>
                     {{ macros.displayAdminOptions(article, 'route.admin.edit_news_article', 'route.admin.confirm_delete_news_article') }}
                     <br />
                     <small>
