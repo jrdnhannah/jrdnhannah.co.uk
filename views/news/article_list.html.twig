@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% import 'news/article.html.twig' as macros %}
+{% import 'util/macros.html.twig' as macros %}
 
 {% block title %}News - {{ parent() }}{% endblock %}
 
@@ -24,7 +24,7 @@
             <div class="box col-md-12">
                 <h2>
                     <a href="{{ path('route.news_article', {'article': article.id}) }}">{{ article.title }}</a>
-                    {{ macros.displayAdminOptions(article) }}
+                    {{ macros.displayAdminOptions(article, 'route.admin.edit_news_article', 'route.admin.confirm_delete_news_article') }}
                     <br />
                     <small>
                         {{ article.createdAt|date('g:ia \\o\\n l \\t\\h\\e jS \\o\\f F, Y') }}
