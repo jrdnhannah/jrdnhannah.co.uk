@@ -17,31 +17,31 @@ $app->get('/contact',           'contact.controller:contactAction')
 
 $app->post('/contact',          'contact.controller:handleContactAction');
 
-$app->get('/news',              'news.controller:showArticleListAction')
+$app->get('/news',              'news.controller:showCollectionAction')
     ->bind('route.news');
 
-$app->get('/news/{article}',    'news.controller:showArticleAction')
+$app->get('/news/{entity}',    'news.controller:showItemAction')
     ->bind('route.news_article')
-    ->convert('article', $articleConverter);
+    ->convert('entity', $articleConverter);
 
-$app->match('/admin/article',     'news.controller:createArticleAction')
+$app->match('/admin/article',     'news.controller:createAction')
     ->method('GET|POST')
     ->bind('route.admin.news_article');
 
-$app->match('/admin/article/{article}/edit', 'news.controller:editArticleAction')
+$app->match('/admin/article/{entity}/edit', 'news.controller:editAction')
     ->method('GET|POST|PUT')
     ->bind('route.admin.edit_news_article')
-    ->convert('article', $articleConverter);
+    ->convert('entity', $articleConverter);
 
-$app->match('admin/article/{article}/confirm_delete', 'news.controller:confirmDeleteArticleAction')
+$app->match('admin/article/{entity}/confirm_delete', 'news.controller:confirmDeleteAction')
     ->method('GET')
     ->bind('route.admin.confirm_delete_news_article')
-    ->convert('article', $articleConverter);
+    ->convert('entity', $articleConverter);
 
-$app->match('/admin/article/{article}/delete', 'news.controller:deleteArticleAction')
+$app->match('/admin/article/{entity}/delete', 'news.controller:deleteAction')
     ->method('GET|DELETE')
     ->bind('route.admin.delete_news_article')
-    ->convert('article', $articleConverter);
+    ->convert('entity', $articleConverter);
 
 $app->get('/admin', function() {
         return new \Symfony\Component\HttpFoundation\RedirectResponse('/admin/article');
