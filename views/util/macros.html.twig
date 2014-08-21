@@ -1,0 +1,23 @@
+{% macro displayNotices() %}
+    {% set notices = app['session'].flashbag.get('notice') %}
+    {% if notices|length > 0 %}
+        <div class="alert alert-success" role="alert">
+            {% for notice in notices %}
+                <p>{{ notice }}</p>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endmacro %}
+
+{% macro displayAdminOptions(entity, editRoute, deleteRoute) %}
+    {% if is_granted('ROLE_ADMIN') %}
+        <a href="{{ path(editRoute, {'entity': entity.id}) }}" class="btn btn-primary">
+            <i class="glyphicon glyphicon-edit"></i>
+            Edit
+        </a>
+        <a href="{{ path(deleteRoute, {'entity': entity.id}) }}" class="btn btn-danger">
+            <i class="glyphicon glyphicon-remove"></i>
+            Delete
+        </a>
+    {% endif %}
+{% endmacro %}
