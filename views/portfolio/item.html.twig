@@ -1,0 +1,6 @@
+{% extends 'crud/item.html.twig' %}
+
+{% block item_content %}
+    {{ parent() }}
+    <img src="{{ entity.webPath }}" />
+{% endblock %}
