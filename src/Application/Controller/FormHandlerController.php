@@ -60,11 +60,10 @@ abstract class FormHandlerController
     abstract protected function getEntityClass();
 
     /**
-     * @param Object|null $entity
+     * @param AdminAccessible|null $entity
      * @return \Symfony\Component\Form\FormInterface
-     * @throws \LogicException
      */
-    abstract protected function createForm($entity = null);
+    abstract protected function createForm(AdminAccessible $entity = null);
 
     /**
      * @return string[]
@@ -90,10 +89,10 @@ abstract class FormHandlerController
     }
 
     /**
-     * @param  object $entity
+     * @param  AdminAccessible $entity
      * @return string
      */
-    public function showItemAction($entity)
+    public function showItemAction(AdminAccessible $entity)
     {
         return $this->twig->render($this->views['single'], ['entity' => $entity]);
     }
@@ -126,7 +125,12 @@ abstract class FormHandlerController
 
     }
 
-    public function editAction(Request $request, $entity)
+    /**
+     * @param Request         $request
+     * @param AdminAccessible $entity
+     * @return string|Response
+     */
+    public function editAction(Request $request, AdminAccessible $entity)
     {
         $handler = function (Request $request, FormInterface $form) {
             $request->getSession()->getFlashBag()->add(
@@ -149,10 +153,10 @@ abstract class FormHandlerController
     }
 
     /**
-     * @param  object $entity
+     * @param  AdminAccessible $entity
      * @return string
      */
-    public function confirmDeleteAction($entity)
+    public function confirmDeleteAction(AdminAccessible $entity)
     {
         return $this->twig->render($this->views['confirm_delete'], ['entity' => $entity]);
     }
