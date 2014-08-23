@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity()
  * @ORM\Table("jrdn__news_article")
  */
-class Article
+class Article implements AdminAccessible
 {
     /**
      * @var integer
@@ -54,7 +54,7 @@ class Article
     }
 
     /**
-     * @return int
+     * {@inheritdoc}
      */
     public function getId()
     {
@@ -80,7 +80,7 @@ class Article
     }
 
     /**
-     * @return string
+     * {@inheritdoc}
      */
     public function getTitle()
     {
