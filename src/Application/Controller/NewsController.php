@@ -50,9 +50,7 @@ class NewsController extends FormHandlerController
     {
         return [
             'single' => 'news/article.html.twig',
-            'list'   => 'news/article_list.html.twig',
-            'create' => 'news/admin/create.html.twig',
-            'confirm_delete' => 'news/admin/confirm_delete.html.twig'
+            'list'   => 'news/article_list.html.twig'
         ];
     }
 
@@ -63,7 +61,11 @@ class NewsController extends FormHandlerController
     {
         return [
             'list' => 'route.news',
-            'single' => 'route.news_article'
+            'single' => 'route.news_article',
+            'create' => 'route.admin.news_article',
+            'edit' => 'route.admin.edit_news_article',
+            'confirm_delete' => 'route.admin.confirm_delete_news_article',
+            'delete' => 'route.admin.delete_news_article'
         ];
     }
 
@@ -74,6 +76,4 @@ class NewsController extends FormHandlerController
     {
         return ['createdAt' => 'desc'];
     }
-
-
 }
