@@ -224,6 +224,22 @@ abstract class FormHandlerController
         return $this->form;
     }
 
+    /**
+     * Helper method to aid in rendering views
+     *
+     * @param string $view
+     * @param array  $parameters
+     * @return string
+     */
+    protected function render($view, array $parameters = null)
+    {
+        $parameters['views']       = $this->getViews();
+        $parameters['routes']      = $this->getRoutes();
+        $parameters['entity_name'] = $this->getEntityName();
+        $parameters['group_name']  = $this->getGroupedName();
+
+        return $this->twig->render($view, $parameters);
+    }
 
     private function resolveRoutesAndViews()
     {
