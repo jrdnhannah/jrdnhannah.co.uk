@@ -1,47 +1,6 @@
-{% extends 'base.html.twig' %}
+{% extends 'crud/collection.html.twig' %}
 
-{% import 'util/macros.html.twig' as macros %}
-
-{% block title %}News - {{ parent() }}{% endblock %}
-
-{% block body %}
-
-    {{ macros.displayNotices() }}
-
-    {% if is_granted('ROLE_ADMIN') %}
-        <div class="row">
-            <div class="col-md-12">
-                <a href="{{ path('route.admin.news_article') }}" class="btn btn-primary btn-block">
-                    <i class="glyphicon glyphicon-plus"></i>
-                    New Article
-                </a>
-            </div>
-        </div>
-    {% endif %}
-
-    {% for article in list %}
-        <div class="row">
-            <div class="box col-md-12">
-                <h2>
-                    <a href="{{ path('route.news_article', {'entity': article.id}) }}">{{ article.title }}</a>
-                    {{ macros.displayAdminOptions(article, 'route.admin.edit_news_article', 'route.admin.confirm_delete_news_article') }}
-                    <br />
-                    <small>
-                        {{ article.createdAt|date('g:ia \\o\\n l \\t\\h\\e jS \\o\\f F, Y') }}
-                    </small>
-                </h2>
-                <p>{{ article.content }}</p>
-            </div>
-        </div>
-    {% else %}
-        <div class="row">
-            <div class="box col-lg-8 col-md-10 col-lg-offset-2 col-md-offset-1">
-                <div class="thumbnail">
-                    <h2>Oops!</h2>
-
-                    <p>Sorry, there doesn't seem to be any articles here!</p>
-                </div>
-            </div>
-        </div>
-    {% endfor %}
+{% block item_content %}
+    {{ parent() }}
+    <p>{{ item.content }}</p>
 {% endblock %}
