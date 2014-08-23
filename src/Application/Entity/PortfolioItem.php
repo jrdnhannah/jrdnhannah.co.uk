@@ -4,6 +4,9 @@ namespace Application\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\Validator\Constraints as Assert;
+
 /**
  * @ORM\Entity()
  * @ORM\Table("jrdn__portfolio_item")
@@ -25,6 +28,19 @@ class PortfolioItem implements AdminAccessible
      * @ORM\Column(name="title", type="string", length=255)
      */
     private $title;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="image", type="string", length=255)
+     */
+    private $image;
+
+    /**
+     * @var UploadedFile
+     * @Assert\File(maxSize="6000000")
+     */
+    private $file;
 
     /**
      * {@inheritdoc}
@@ -50,5 +66,76 @@ class PortfolioItem implements AdminAccessible
     {
         $this->title = $title;
         return $this;
+    }
+
+    /**
+     * @return UploadedFile
+     */
+    public function getFile()
+    {
+        return $this->file;
+    }
+
+    /**
+     * @param UploadedFile $file
+     * @return $this
+     */
+    public function setFile(UploadedFile $file = null)
+    {
+        $this->file = $file;
+        $this->upload();
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    public function getAbsolutePath()
+    {
+        return null === $this->image ? null : $this->getUploadRootDir() . '/' . $this->image;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getWebPath()
+    {
+        return null === $this->image ? null : $this->getUploadDir() . '/' . $this->image;
+    }
+
+    /**
+     * @return string
+     */
+    protected function getUploadRootDir()
+    {
+        return __DIR__ . '/../../../web' . $this->getUploadDir();
+    }
+
+    /**
+     * @return string
+     */
+    protected function getUploadDir()
+    {
+        return '/uploads/portfolio_items';
+    }
+
+    public function upload()
+    {
+        if (null === $this->getFile()) {
+            return;
+        }
+
+        $this->getFile()->move(
+            $this->getUploadRootDir(),
+            $this->getFile()->getClientOriginalName()
+        );
+
+        $this->image = $this->getFile()->getClientOriginalName();
+        $this->file  = null;
     }
 }
