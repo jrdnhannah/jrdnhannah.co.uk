@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% import 'util/macros.html.twig' as macros %}
+
+{% block title %}{{ group_name }} - {{ parent() }}{% endblock %}
+
+{% block body %}
+
+    {{ macros.displayNotices() }}
+
+    {% if is_granted('ROLE_ADMIN') %}
+        <div class="row">
+            <div class="col-md-12">
+                <a href="{{ path(routes.create) }}" class="btn btn-primary btn-block">
+                    <i class="glyphicon glyphicon-plus"></i>
+                    New {{ entity_name }}
+                </a>
+            </div>
+        </div>
+    {% endif %}
+
+    {% for item in list %}
+        <div class="row">
+            <div class="box col-md-12">
+                {% block item_content %}
+                    <h2>
+                        <a href="{{ path(routes.single, {'entity': item.id}) }}">{{ item.title }}</a>
+                        {{ macros.displayAdminOptions(item, routes.edit, routes.confirm_delete) }}
+                        <br/>
+                    </h2>
+                {% endblock %}
+            </div>
+        </div>
+    {% else %}
+        <div class="row">
+            <div class="box col-md-12">
+                <div class="thumbnail">
+                    <h2>Oops!</h2>
+
+                    <p>Sorry, there doesn't seem to be any {{ entity_name }}'s here!</p>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

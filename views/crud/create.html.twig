@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Create - News - {{ parent() }}{% endblock %}
+{% block title %}{{ action }} - {{ entity_name }} - {{ parent() }}{% endblock %}
 
 {% block body %}
     <div class="row">
@@ -9,5 +9,4 @@
             {{ form(form) }}
         </div>
     </div>
-
 {% endblock %}

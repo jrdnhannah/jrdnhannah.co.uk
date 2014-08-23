@@ -5,23 +5,22 @@
 {% block body %}
     <div class="row">
         <div class="box col-md-12">
-            <h2>Delete article?</h2>
+            <h2>Delete {{ entity_name }}?</h2>
 
-            <p>Are you sure you want to delete article "{{ entity.title }}"?</p>
+            <p>Are you sure you want to delete {{ entity_name }} "{{ entity.title }}"?</p>
 
             <p>
-                <a href="{{ path('route.admin.delete_news_article', {'entity': entity.id}) }}"
+                <a href="{{ path(routes.delete, {'entity': entity.id}) }}"
                    class="btn btn-danger btn-lg">
                     <i class="glyphicon glyphicon-remove"></i>
                     Yes
                 </a>
                 &nbsp;
-                <a href="{{ path('route.news_article', {'entity': entity.id}) }}" class="btn btn-default btn-lg">
+                <a href="{{ path(routes.single, {'entity': entity.id}) }}" class="btn btn-default btn-lg">
                     <i class="glyphicon glyphicon-ban-circle"></i>
                     No
                 </a>
             </p>
         </div>
     </div>
-
 {% endblock %}

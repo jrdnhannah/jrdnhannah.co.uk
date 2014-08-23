@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% import 'util/macros.html.twig' as macros %}
+
+{% block title %}{{ entity.title }} - {{ group_name }} - {{ parent() }}{% endblock %}
+
+{% block body %}
+    {{ macros.displayNotices() }}
+
+    <div class="row">
+        <div class="box col-md-12">
+            {% block item_content %}
+                <h2>
+                    {{ entity.title }}
+                </h2>
+            {% endblock %}
+        </div>
+    </div>
+{% endblock %}
