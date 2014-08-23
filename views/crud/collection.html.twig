@@ -20,17 +20,20 @@
     {% endif %}
 
     {% for item in list %}
-        <div class="row">
-            <div class="box col-md-12">
-                {% block item_content %}
-                    <h2>
-                        <a href="{{ path(routes.single, {'entity': item.id}) }}">{{ item.title }}</a>
-                        {{ macros.displayAdminOptions(item, routes.edit, routes.confirm_delete) }}
-                        <br/>
-                    </h2>
-                {% endblock %}
+        {% block collection_loop %}
+            <div class="row">
+                <div class="box col-md-12">
+                    {% block item_content %}
+                        <h2>
+                            <a href="{{ path(routes.single, {'entity': item.id}) }}">{{ item.title }}</a><br/>
+                            {% block admin_options %}
+                                {{ macros.displayAdminOptions(item, routes.edit, routes.confirm_delete) }}
+                            {% endblock %}
+                        </h2>
+                    {% endblock %}
+                </div>
             </div>
-        </div>
+        {% endblock %}
     {% else %}
         <div class="row">
             <div class="box col-md-12">

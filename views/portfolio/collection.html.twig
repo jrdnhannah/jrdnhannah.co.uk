@@ -1,7 +1,15 @@
 {% extends 'crud/collection.html.twig' %}
 
-{% block item_content %}
-    {{ parent() }}
-
-    <img src="{{ item.webPath }}" />
+{% block collection_loop %}
+    <div class="col-xs-6 col-md-3">
+        <div class="thumbnail">
+            <h4>
+                <a href="{{ path(routes.single, {'entity': item.id}) }}">
+                    {{ item.title }}
+                </a>
+            </h4>
+            <img src="{{ item.webPath }}" />
+            {{ block('admin_options') }}
+        </div>
+    </div>
 {% endblock %}
