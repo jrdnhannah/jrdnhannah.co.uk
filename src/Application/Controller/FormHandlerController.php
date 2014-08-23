@@ -85,7 +85,7 @@ abstract class FormHandlerController
     {
         $list = $this->em->getRepository($this->getEntityClass())->findBy([], $this->getCollectionCriteria());
 
-        return $this->twig->render($this->views['list'], ['list' => $list]);
+        return $this->render($this->views['list'], ['list' => $list]);
     }
 
     /**
@@ -94,7 +94,7 @@ abstract class FormHandlerController
      */
     public function showItemAction(AdminAccessible $entity)
     {
-        return $this->twig->render($this->views['single'], ['entity' => $entity]);
+        return $this->render($this->views['single'], ['entity' => $entity]);
     }
 
     /**
@@ -120,7 +120,7 @@ abstract class FormHandlerController
         try {
             return $this->handleForm($request, $handler);
         } catch (InvalidFormException $e) {
-            return $this->twig->render($this->views['create'], ['form' => $e->getForm()->createView()]);
+            return $this->render('crud/create.html.twig', ['form' => $e->getForm()->createView(), 'action' => 'Create']);
         }
 
     }
@@ -148,7 +148,7 @@ abstract class FormHandlerController
         try {
             return $this->handleForm($request, $handler, $entity);
         } catch (InvalidFormException $e) {
-            return $this->twig->render($this->views['create'], ['form' => $e->getForm()->createView()]);
+            return $this->render('crud/create.html.twig', ['form' => $e->getForm()->createView(), 'action' => 'Edit']);
         }
     }
 
@@ -158,7 +158,7 @@ abstract class FormHandlerController
      */
     public function confirmDeleteAction(AdminAccessible $entity)
     {
-        return $this->twig->render($this->views['confirm_delete'], ['entity' => $entity]);
+        return $this->render('crud/confirm_delete.html.twig', ['entity' => $entity]);
     }
 
     /**
