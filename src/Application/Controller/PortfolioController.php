@@ -58,4 +58,17 @@ class PortfolioController extends FormHandlerController
             'create' => 'route.admin.portfolio_item'
         ];
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function getViews()
+    {
+        return [
+            'list' => 'portfolio/collection.html.twig',
+            'single' => 'portfolio/item.html.twig'
+        ];
+    }
+
+
 }
