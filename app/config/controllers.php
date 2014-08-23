@@ -23,6 +23,15 @@ $app['news.controller'] = function() use ($app) {
     );
 };
 
+$app['portfolio.controller'] = function() use ($app) {
+    return new \Application\Controller\PortfolioController(
+        $app['twig'],
+        $app['orm.em'],
+        $app['url_generator'],
+        $app['form.factory']
+    );
+};
+
 $app['auth.controller'] = function() use ($app) {
     return new \Application\Controller\AuthenticationController(
         $app['twig'],
