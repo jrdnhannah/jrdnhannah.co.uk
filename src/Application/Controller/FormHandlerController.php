@@ -203,9 +203,12 @@ abstract class FormHandlerController
         throw new InvalidFormException($form);
     }
 
+    /**
+     * @param OptionsResolverInterface $resolver
+     */
     protected function configureRoutesList(OptionsResolverInterface $resolver)
     {
-        $resolver->setRequired(['list', 'single']);
+        $resolver->setRequired(['list', 'single', 'delete', 'create', 'edit', 'confirm_delete']);
     }
 
     /**
