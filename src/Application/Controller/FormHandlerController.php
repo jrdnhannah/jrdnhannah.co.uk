@@ -34,6 +34,12 @@ abstract class FormHandlerController
     /** @var string[] */
     protected $routes = [];
 
+    /**
+     * @param \Twig_Environment      $twig
+     * @param EntityManagerInterface $em
+     * @param UrlGeneratorInterface  $urlGenerator
+     * @param FormFactoryInterface   $form
+     */
     public function __construct(\Twig_Environment $twig, EntityManagerInterface $em, UrlGeneratorInterface $urlGenerator, FormFactoryInterface $form)
     {
         $this->twig = $twig;
