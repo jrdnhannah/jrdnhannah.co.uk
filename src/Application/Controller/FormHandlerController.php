@@ -149,11 +149,11 @@ abstract class FormHandlerController
     }
 
     /**
-     * @param Request $request
-     * @param object  $entity
+     * @param Request          $request
+     * @param AdminAccessible  $entity
      * @return RedirectResponse
      */
-    public function deleteAction(Request $request, $entity)
+    public function deleteAction(Request $request, AdminAccessible $entity)
     {
         $request->getSession()->getFlashBag()->add(
             'notice',
@@ -169,12 +169,12 @@ abstract class FormHandlerController
     /**
      * @param Request $request
      * @param \Closure $handler
-     * @param Object|null $entity
+     * @param AdminAccessible|null $entity
      * @param Response $response
      * @return Response
      * @throws \Application\Exception\InvalidFormException
      */
-    protected function handleForm(Request $request, \Closure $handler, $entity = null, Response $response = null)
+    protected function handleForm(Request $request, \Closure $handler, AdminAccessible $entity = null, Response $response = null)
     {
         $form = $this->createForm($entity);
         $form->handleRequest($request);

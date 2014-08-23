@@ -25,7 +25,7 @@ class NewsController extends FormHandlerController
     /**
      * {@inheritdoc}
      */
-    protected function createForm($entity = null)
+    protected function createForm(AdminAccessible $entity = null)
     {
         return $this->getFormFactory()
                     ->createBuilder('form', $entity, ['data_class' => $this->getEntityClass()])
