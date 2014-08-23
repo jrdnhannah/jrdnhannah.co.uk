@@ -17,6 +17,14 @@ class NewsController extends FormHandlerController
     /**
      * {@inheritdoc}
      */
+    protected function getGroupedName()
+    {
+        return 'News';
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     protected function getEntityClass()
     {
         return 'Application\Entity\Article';

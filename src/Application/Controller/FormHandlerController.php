@@ -52,6 +52,11 @@ abstract class FormHandlerController
     /**
      * @return string
      */
+    abstract protected function getGroupedName();
+
+    /**
+     * @return string
+     */
     abstract protected function getEntityClass();
 
     /**
