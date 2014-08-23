@@ -2,6 +2,7 @@
 
 namespace Application\Controller;
 
+use Application\Entity\AdminAccessible;
 use Application\Exception\InvalidFormException;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\FormFactoryInterface;
@@ -63,12 +64,15 @@ abstract class FormHandlerController
     /**
      * @return string[]
      */
-    abstract protected function getViews();
+    abstract protected function getRoutes();
 
     /**
      * @return string[]
      */
-    abstract protected function getRoutes();
+    protected function getViews()
+    {
+        return [];
+    }
 
     /**
      * @return string
@@ -190,11 +194,6 @@ abstract class FormHandlerController
         throw new InvalidFormException($form);
     }
 
-    protected function configureViewsList(OptionsResolverInterface $resolver)
-    {
-        $resolver->setRequired(['list', 'single', 'confirm_delete', 'create']);
-    }
-
     protected function configureRoutesList(OptionsResolverInterface $resolver)
     {
         $resolver->setRequired(['list', 'single']);
@@ -216,17 +215,20 @@ abstract class FormHandlerController
         return $this->form;
     }
 
+
     private function resolveRoutesAndViews()
     {
-        $resolver = new OptionsResolver;
-        $this->configureViewsList($resolver);
-        $resolver->resolve($this->getViews());
+        $defaultViews = [
+            'single' => 'crud/item.html.twig',
+            'list'   => 'crud/collection.html.twig',
+        ];
+
+        $this->views = array_merge($defaultViews, $this->getViews());
 
         $resolver = new OptionsResolver;
         $this->configureRoutesList($resolver);
         $resolver->resolve($this->getRoutes());
 
-        $this->views = $this->getViews();
         $this->routes = $this->getRoutes();
     }
 }
