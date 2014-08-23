@@ -2,20 +2,7 @@
 
 namespace Application\Controller;
 
-use Application\Entity\Article;
-use Application\Entity\User;
-use Application\Exception\InvalidFormException;
-use Application\User\UserManager;
-use Doctrine\ORM\EntityManagerInterface;
-use string;
-use Symfony\Component\Form\FormFactoryInterface;
-use Symfony\Component\Form\FormInterface;
-use Symfony\Component\HttpFoundation\RedirectResponse;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Session\Session;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Application\Entity\AdminAccessible;
 
 class NewsController extends FormHandlerController
 {
