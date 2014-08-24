@@ -94,4 +94,12 @@ trait UploadableTrait
         $this->file = null;
     }
 
+    /**
+     * @ORM\PreRemove
+     */
+    public function delete()
+    {
+        unlink($this->getAbsolutePath());
+    }
+
 }
