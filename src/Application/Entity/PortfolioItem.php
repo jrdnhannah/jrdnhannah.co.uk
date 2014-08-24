@@ -2,18 +2,20 @@
 
 namespace Application\Entity;
 
+use Application\Model\UploadableInterface;
+use Application\Model\UploadableTrait;
 use Application\Model\AdminAccessible;
 use Doctrine\ORM\Mapping as ORM;
-
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity()
  * @ORM\Table("jrdn__portfolio_item")
  */
-class PortfolioItem implements AdminAccessible
+class PortfolioItem implements AdminAccessible, UploadableInterface
 {
+    use UploadableTrait;
+
     /**
      * @var integer
      *
@@ -38,10 +40,18 @@ class PortfolioItem implements AdminAccessible
     private $image;
 
     /**
-     * @var UploadedFile
-     * @Assert\File(maxSize="6000000")
+     * @var string
+     *
+     * @ORM\Column(name="description", type="text")
      */
-    private $file;
+    private $description;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="link", type="string", length=255)
+     */
+    private $link;
 
     /**
      * {@inheritdoc}
@@ -70,25 +80,6 @@ class PortfolioItem implements AdminAccessible
     }
 
     /**
-     * @return UploadedFile
-     */
-    public function getFile()
-    {
-        return $this->file;
-    }
-
-    /**
-     * @param UploadedFile $file
-     * @return $this
-     */
-    public function setFile(UploadedFile $file = null)
-    {
-        $this->file = $file;
-        $this->upload();
-        return $this;
-    }
-
-    /**
      * @return string
      */
     public function getImage()
@@ -96,25 +87,40 @@ class PortfolioItem implements AdminAccessible
         return $this->image;
     }
 
-    public function getAbsolutePath()
-    {
-        return null === $this->image ? null : $this->getUploadRootDir() . '/' . $this->image;
-    }
-
     /**
-     * @return null|string
+     * @param string $description
+     * @return $this
      */
-    public function getWebPath()
+    public function setDescription($description)
     {
-        return null === $this->image ? null : $this->getUploadDir() . '/' . $this->image;
+        $this->description = $description;
+        return $this;
     }
 
     /**
      * @return string
      */
-    protected function getUploadRootDir()
+    public function getDescription()
     {
-        return __DIR__ . '/../../../web' . $this->getUploadDir();
+        return $this->description;
+    }
+
+    /**
+     * @param string $link
+     * @return $this
+     */
+    public function setLink($link)
+    {
+        $this->link = $link;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLink()
+    {
+        return $this->link;
     }
 
     /**
@@ -125,18 +131,8 @@ class PortfolioItem implements AdminAccessible
         return '/uploads/portfolio_items';
     }
 
-    public function upload()
+    protected function getUploadableProperty()
     {
-        if (null === $this->getFile()) {
-            return;
-        }
-
-        $this->getFile()->move(
-            $this->getUploadRootDir(),
-            $this->getFile()->getClientOriginalName()
-        );
-
-        $this->image = $this->getFile()->getClientOriginalName();
-        $this->file  = null;
+        return 'image';
     }
 }
