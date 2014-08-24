@@ -2,7 +2,7 @@
 
 namespace Application\Controller;
 
-use Application\Entity\AdminAccessible;
+use Application\Model\AdminAccessible;
 use Application\Exception\InvalidFormException;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\FormFactoryInterface;

@@ -2,7 +2,7 @@
 
 namespace Application\Controller;
 
-use Application\Entity\AdminAccessible;
+use Application\Model\AdminAccessible;
 
 class PortfolioController extends FormHandlerController
 {

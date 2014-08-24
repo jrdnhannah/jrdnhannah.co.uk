@@ -2,6 +2,7 @@
 
 namespace Application\Entity;
 
+use Application\Model\AdminAccessible;
 use Doctrine\ORM\Mapping as ORM;
 
 use Symfony\Component\HttpFoundation\File\UploadedFile;

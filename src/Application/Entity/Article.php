@@ -3,6 +3,7 @@
 namespace Application\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Application\Model\AdminAccessible;
 
 /**
  * @ORM\Entity()
