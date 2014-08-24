@@ -11,6 +11,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity()
  * @ORM\Table("jrdn__portfolio_item")
+ * @ORM\HasLifecycleCallbacks
  */
 class PortfolioItem implements AdminAccessible, UploadableInterface
 {
