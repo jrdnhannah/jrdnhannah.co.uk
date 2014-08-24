@@ -12,6 +12,9 @@
             {% block item_content %}
                 <h2>
                     {{ entity.title }}
+                    {% block admin_options %}
+                        {{ macros.displayAdminOptions(entity, routes.edit, routes.confirm_delete) }}
+                    {% endblock %}
                 </h2>
             {% endblock %}
         </div>
