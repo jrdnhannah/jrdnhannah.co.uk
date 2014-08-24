@@ -8,17 +8,23 @@ use Symfony\Component\Validator\Constraints as Assert;
 trait UploadableTrait
 {
     /**
+     * Property which contains the uploaded file
+     *
      * @var UploadedFile
      * @Assert\File(maxSize="6000000")
      */
     private $file;
 
     /**
+     * Property in which uploaded files name sits
+     *
      * @return string
      */
     abstract protected function getUploadableProperty();
 
     /**
+     * Full upload directory
+     *
      * @return string
      */
     protected function getUploadRootDir()
@@ -27,10 +33,15 @@ trait UploadableTrait
     }
 
     /**
+     * Upload directory
+     *
      * @return string
      */
     abstract protected function getUploadDir();
 
+    /**
+     * @return null|string
+     */
     public function getAbsolutePath()
     {
         return null === $this->{$this->getUploadableProperty()} ?
@@ -46,9 +57,22 @@ trait UploadableTrait
             null : $this->getUploadDir() . '/' . $this->{$this->getUploadableProperty()};
     }
 
+    /**
+     * @return UploadedFile
+     */
     public function getFile()
     {
         return $this->file;
+    }
+
+    /**
+     * @param UploadedFile $file
+     * @return void
+     */
+    public function setFile(UploadedFile $file)
+    {
+        $this->file = $file;
+        $this->upload();
     }
 
     /**
@@ -70,9 +94,4 @@ trait UploadableTrait
         $this->file = null;
     }
 
-    public function setFile(UploadedFile $file)
-    {
-        $this->file = $file;
-        $this->upload();
-    }
 }
