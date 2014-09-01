@@ -23,3 +23,10 @@
 .portfolio-item {
     height: 300px;
 }
+
+img.portfolio-item-image {
+    margin: 0 auto;
+    display: block;
+    max-height: 500px;
+    max-width: 800px;
+}
