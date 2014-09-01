@@ -8,15 +8,17 @@
     {{ macros.displayNotices() }}
 
     <div class="row">
-        <div class="box col-md-12">
-            {% block item_content %}
-                <h2>
-                    {{ entity.title }}
-                    {% block admin_options %}
-                        {{ macros.displayAdminOptions(entity, routes.edit, routes.confirm_delete) }}
-                    {% endblock %}
-                </h2>
-            {% endblock %}
-        </div>
+        {% block item_box %}
+            <div class="box col-md-12">
+                {% block item_content %}
+                    <h2>
+                        {{ entity.title }}
+                        {% block admin_options %}
+                            {{ macros.displayAdminOptions(entity, routes.edit, routes.confirm_delete) }}
+                        {% endblock %}
+                    </h2>
+                {% endblock %}
+            </div>
+        {% endblock %}
     </div>
 {% endblock %}
