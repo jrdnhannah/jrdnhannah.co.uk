@@ -3,4 +3,17 @@
 {% block item_content %}
     {{ parent() }}
     <img src="{{ entity.webPath }}" />
+
+    <div class="portfolio-item-description">
+        {{ entity.description }}
+    </div>
+{% endblock %}
+
+{% block admin_options %}
+{{ parent() }}
+
+    <a href="{{ entity.link }}" target="_blank" title="{{ entity.title }}" class="btn btn-primary">
+        <i class="glyphicon glyphicon-zoom-in"></i>
+        &nbsp; View
+    </a>
 {% endblock %}
