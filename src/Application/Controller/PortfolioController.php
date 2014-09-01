@@ -39,6 +39,8 @@ class PortfolioController extends FormHandlerController
         return $this->getFormFactory()
                     ->createBuilder('form', $entity, ['data_class' => $this->getEntityClass()])
                     ->add('title', 'text', ['required' => true])
+                    ->add('description', 'textarea')
+                    ->add('link', 'text')
                     ->add('file', 'file')
                     ->add('Add', 'submit')
                     ->getForm();
