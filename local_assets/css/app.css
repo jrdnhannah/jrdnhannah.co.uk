@@ -6,3 +6,7 @@
 .banner {
     font-size: 24px;
 }
+
+.portfolio-item {
+    height: 300px;
+}
