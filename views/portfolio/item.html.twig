@@ -2,7 +2,6 @@
 
 {% block item_content %}
     {{ parent() }}
-    <img src="{{ entity.webPath }}" />
 
     <div class="portfolio-item-description">
         <p>{{ entity.description }}</p>
@@ -16,4 +15,16 @@
         <i class="glyphicon glyphicon-zoom-in"></i>
         &nbsp; View
     </a>
+{% endblock %}
+
+{% block item_box %}
+    {{ parent() }}
+
+    {{ block('portfolio_item_image') }}
+{% endblock %}
+
+{% block portfolio_item_image %}
+    <div class="col-md-12 box">
+        <img class="portfolio-item-image" src="{{ entity.webPath }}"/>
+    </div>
 {% endblock %}
