@@ -23,6 +23,13 @@ trait UploadableTrait
     abstract protected function getUploadableProperty();
 
     /**
+     * Upload directory
+     *
+     * @return string
+     */
+    abstract protected function getUploadDir();
+
+    /**
      * Full upload directory
      *
      * @return string
@@ -31,13 +38,6 @@ trait UploadableTrait
     {
         return __DIR__ . '/../../../web' . $this->getUploadDir();
     }
-
-    /**
-     * Upload directory
-     *
-     * @return string
-     */
-    abstract protected function getUploadDir();
 
     /**
      * @return null|string
